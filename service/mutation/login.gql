@@ -1,0 +1,7 @@
+mutation login($request: LoginInput!) {
+  login(input: $request) {
+    data {
+      ...Account
+    }
+  }
+}

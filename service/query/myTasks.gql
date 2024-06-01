@@ -1,0 +1,42 @@
+query myTasks {
+  me {
+    myTasks {
+      pageInfo {
+        ...PageInfo
+      }
+
+      list {
+        task {
+          ...Task
+        }
+        win
+        points
+        reputations
+        choice
+      }
+    }
+  }
+}
+
+fragment Task on Task {
+  id
+  taskType
+  title
+  description
+  startTime
+  endTime
+  rewards
+  status
+  ... on BinaryDecisionTask {
+    choice
+    right
+    wrong
+  }
+}
+
+fragment PageInfo on PageInfo {
+  hasNextPage
+  hasPreviousPage
+  startCursor
+  endCursor
+}

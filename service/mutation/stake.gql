@@ -1,0 +1,5 @@
+mutation stake($amount: Int!) {
+  stake(amount: $amount) {
+    status
+  }
+}

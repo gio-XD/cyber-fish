@@ -1,0 +1,16 @@
+query account {
+  me {
+    ...Account
+  }
+}
+
+fragment Account on User {
+  accessToken
+  address
+  points
+  cyberClubPass {
+    role
+    minted
+    reputations
+  }
+}

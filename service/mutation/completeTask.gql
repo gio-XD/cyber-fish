@@ -1,0 +1,5 @@
+mutation doTask($input: DoTaskInput!) {
+  doTask(input: $input) {
+    status
+  }
+}

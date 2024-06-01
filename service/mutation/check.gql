@@ -1,0 +1,6 @@
+mutation check {
+  checkAccess {
+    isVerified
+    isStake
+  }
+}

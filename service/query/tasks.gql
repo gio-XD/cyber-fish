@@ -1,0 +1,10 @@
+query tasks($status: TaskStatus) {
+  tasks(status: $status) {
+    pageInfo {
+      ...PageInfo
+    }
+    list {
+      ...Task
+    }
+  }
+}
