@@ -23,3 +23,8 @@ export const AccessToken = atom<string | undefined>({
   key: "accessToken",
   default: getDefaultToken(),
 });
+
+export const refreshList = atom({
+  key: "refreshList",
+  default: () => {},
+});

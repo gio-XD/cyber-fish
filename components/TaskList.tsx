@@ -1,6 +1,9 @@
 import { api } from "@/service/api";
 import { TaskStatus } from "@/service/generated/graphql";
+import { refreshList } from "@/state";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
 import CardGrid from "./CardGrid";
 import TaskCard from "./TaskCard";
 
@@ -8,6 +11,14 @@ function TaskList(props: { status: TaskStatus }) {
   const { data, mutate } = api.useTasks({
     status: props.status,
   });
+
+  const updateRefresh = useSetRecoilState(refreshList);
+
+  useEffect(() => {
+    if (props.status === TaskStatus.InProgress) {
+      updateRefresh((state) => mutate);
+    }
+  }, [props.status]);
 
   return (
     <CardGrid>

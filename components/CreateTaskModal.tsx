@@ -5,9 +5,11 @@ import {
   TaskInput,
   TaskType,
 } from "@/service/generated/graphql";
+import { refreshList } from "@/state";
 import { getUnixTime } from "date-fns";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 import { DatePicker } from "./DatePicker";
 import LoadingButton from "./LoadingButton";
 import { Button } from "./ui/button";
@@ -23,6 +25,12 @@ import {
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
+const sleep = (ms: number) =>
+  new Promise((r) => {
+    setTimeout(() => {
+      r(true);
+    }, ms);
+  });
 const VALIDATE_EMAIL = new RegExp(
   "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
 );
@@ -38,6 +46,9 @@ function CreateTaskModal() {
       },
     });
 
+  const [refresh] = useRecoilState(refreshList);
+  console.log("🚀 ~ CreateTaskModal ~ refresh:", refresh);
+
   const submit = handleSubmit(async (e) => {
     const res = await api.createTask({
       input: {
@@ -45,12 +56,16 @@ function CreateTaskModal() {
 
         rewards: Number(e.rewards),
         taskType: TaskType.BinaryDecision,
-        startTime: getUnixTime(new Date()) + 10,
+        startTime: getUnixTime(new Date()) + 1,
         endTime: getUnixTime(e.endTime),
       },
     });
 
     if (res.createTask.status === CreateTaskResponse_Status.Success) {
+      await sleep(6000);
+
+      await refresh();
+
       toggleIsOpen(false);
     }
   });

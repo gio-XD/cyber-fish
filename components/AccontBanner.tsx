@@ -1,5 +1,6 @@
 import { truncateAddress } from "@/lib/address";
 import { useGlobal } from "@/provider/GlobalProvider";
+import { UserRole } from "@/service/generated/graphql";
 import Image from "next/image";
 import ConnectButton from "./ConnectButton";
 import CreateTaskModal from "./CreateTaskModal";
@@ -38,10 +39,17 @@ function AccontBanner() {
       return (
         <Flex className="justify-between w-full pl-10">
           <Flex className="flex-col gap-4  items-start">
-            <span className=" text-lg text-left text-white">
-              {truncateAddress(account?.address)}
-            </span>
+            <Flex className="gap-4">
+              <span className=" text-lg text-left text-white">
+                {truncateAddress(account?.address)}
+              </span>
 
+              {account?.cyberClubPass.role === UserRole.Committee && (
+                <span className="text-white p-1 border-[1px] border-white rounded-lg">
+                  Committee
+                </span>
+              )}
+            </Flex>
             <svg
               width="318"
               height="2"

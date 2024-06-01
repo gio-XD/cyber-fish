@@ -12,11 +12,11 @@ import { fromUnixTime } from "date-fns";
 import { useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { useRecoilState } from "recoil";
-import Flex from "./Flex";
-import LoadingButton from "./LoadingButton";
-import Tag from "./Tag";
-import { Card, CardDescription, CardFooter, CardTitle } from "./ui/card";
-import { toast } from "./ui/use-toast";
+import Flex from "../Flex";
+import LoadingButton from "../LoadingButton";
+import Tag from "../Tag";
+import { Card, CardDescription, CardFooter, CardTitle } from "../ui/card";
+import { toast } from "../ui/use-toast";
 
 function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
   const { data, refresh } = props;
@@ -266,7 +266,7 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
                   loading={isLoading}
                   onClick={() => doTask({ agree: true })}
                 >
-                  Agree{`${submitted ? `: ${data.right}` : ""}`}
+                  Agree{`${submitted ? `: ${data.right}` : undefined}`}
                 </LoadingButton>
                 <LoadingButton
                   disabled={
@@ -278,7 +278,7 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
                   onClick={() => doTask({ agree: false })}
                   className="w-full"
                 >
-                  Disagree{`${submitted ? `: ${data.wrong}` : ""}`}
+                  Disagree{`${submitted ? `: ${data.wrong}` : undefined}`}
                 </LoadingButton>
               </>
             );
