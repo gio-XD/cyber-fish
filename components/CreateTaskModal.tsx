@@ -47,7 +47,6 @@ function CreateTaskModal() {
     });
 
   const [refresh] = useRecoilState(refreshList);
-  console.log("🚀 ~ CreateTaskModal ~ refresh:", refresh);
 
   const submit = handleSubmit(async (e) => {
     const res = await api.createTask({
@@ -57,7 +56,8 @@ function CreateTaskModal() {
         rewards: Number(e.rewards),
         taskType: TaskType.BinaryDecision,
         startTime: getUnixTime(new Date()) + 1,
-        endTime: getUnixTime(e.endTime),
+        // endTime: getUnixTime(e.endTime),
+        endTime: getUnixTime(new Date()) + 90,
       },
     });
 
