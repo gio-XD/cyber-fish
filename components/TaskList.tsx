@@ -1,6 +1,7 @@
 import { api } from "@/service/api";
 import { TaskStatus } from "@/service/generated/graphql";
 import { refreshList } from "@/state";
+import Image from "next/image";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import CardGrid from "./CardGrid";
@@ -29,8 +30,17 @@ function TaskList(props: { status: TaskStatus }) {
 
       {props.status === TaskStatus.InProgress ? (
         <>
-          <TaskCard1 />
-          <TaskCard2 />
+          <div key="1" className=" relative w-full h-full">
+            <Image
+              src="/bgs/orgTask.png"
+              alt=""
+              fill
+              className=" object-contain"
+            />
+          </div>
+
+          <TaskCard1 key="2" />
+          <TaskCard2 key="3" />
         </>
       ) : null}
     </CardGrid>
