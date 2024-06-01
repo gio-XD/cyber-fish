@@ -196,11 +196,16 @@ function TaskCard1() {
           Questionnaire Survey <br />
           Link3 Club feedback
         </CardTitle>
-        <span className=" mt-8 text-[14px] font-semibold">Condition</span>
-        <span className=" text-[12px] text-[#C0C0C0]">Reputation &gt; 500</span>
-        <span className=" mt-[-2] text-[12px] text-[#C0C0C0]">
-          Property &gt; 2000 USDT
-        </span>
+
+        <Flex className=" mt-16  flex-col bg-white rounded-sm w-full p-4  items-start">
+          <span className="text-[14px] font-semibold">Condition</span>
+          <span className=" text-[12px] text-[#C0C0C0]">
+            Reputation &gt; 500
+          </span>
+          <span className=" mt-[-2] text-[12px] text-[#C0C0C0]">
+            Property &gt; 2000 USDT
+          </span>
+        </Flex>
       </Flex>
 
       <CardFooter className=" flex flex-col gap-1 justify-between p-0 pt-2">
