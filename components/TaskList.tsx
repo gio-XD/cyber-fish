@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import CardGrid from "./CardGrid";
+import TaskCard1 from "./Static/TaskCard1";
 import TaskCard from "./TaskCard";
 
 function TaskList(props: { status: TaskStatus }) {
@@ -28,13 +29,7 @@ function TaskList(props: { status: TaskStatus }) {
 
       {props.status === TaskStatus.InProgress ? (
         <>
-          <Image
-            quality={100}
-            alt=""
-            src="/bgs/task1.png"
-            width={250}
-            height={340}
-          />
+          <TaskCard1 />
           <Image
             quality={100}
             alt=""

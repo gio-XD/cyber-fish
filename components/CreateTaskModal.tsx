@@ -52,12 +52,10 @@ function CreateTaskModal() {
     const res = await api.createTask({
       input: {
         ...e,
-
         rewards: Number(e.rewards),
         taskType: TaskType.BinaryDecision,
         startTime: getUnixTime(new Date()) + 1,
-        // endTime: getUnixTime(e.endTime),
-        endTime: getUnixTime(new Date()) + 90,
+        endTime: getUnixTime(e.endTime),
       },
     });
 

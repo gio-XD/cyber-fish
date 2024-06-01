@@ -18,7 +18,7 @@ import Tag from "../Tag";
 import { Card, CardDescription, CardFooter, CardTitle } from "../ui/card";
 import { toast } from "../ui/use-toast";
 
-function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
+function TaskCard2(props: { data: TaskFragment; refresh: () => void }) {
   const { data, refresh } = props;
 
   const [isLoading, toggleIsLoading] = useState(false);
@@ -358,4 +358,4 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
   );
 }
 
-export default TaskCard;
+export default TaskCard2;

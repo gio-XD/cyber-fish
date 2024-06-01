@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
-import { TaskFragment } from "@/service/generated/graphql";
 import { useState } from "react";
 import Flex from "../Flex";
 import LoadingButton from "../LoadingButton";
-import { Card, CardDescription, CardFooter, CardTitle } from "../ui/card";
+import { Card, CardFooter, CardTitle } from "../ui/card";
 
 const sleep = (ms: number) =>
   new Promise((r) => {
@@ -12,7 +11,7 @@ const sleep = (ms: number) =>
     }, ms);
   });
 
-function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
+function TaskCard1() {
   const [isLoading, toggleIsLoading] = useState(false);
 
   return (
@@ -193,10 +192,15 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
             1000 Link3
           </span>
         </Flex>
-        <CardTitle className={cn(" text-[28px] mb-2")}>data.title</CardTitle>
-        <CardDescription className=" text-[16px] font-semibold">
-          data.description
-        </CardDescription>
+        <CardTitle className={cn(" text-[18px] mb-2")}>
+          Questionnaire Survey <br />
+          Link3 Club feedback
+        </CardTitle>
+        <span className=" mt-8 text-[14px] font-semibold">Condition</span>
+        <span className=" text-[12px] text-[#C0C0C0]">Reputation &gt; 500</span>
+        <span className=" mt-[-2] text-[12px] text-[#C0C0C0]">
+          Property &gt; 2000 USDT
+        </span>
       </Flex>
 
       <CardFooter className=" flex flex-col gap-1 justify-between p-0 pt-2">
@@ -210,4 +214,4 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
   );
 }
 
-export default TaskCard;
+export default TaskCard1;
