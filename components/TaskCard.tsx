@@ -32,7 +32,7 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
     account?.cyberClubPass.role !== UserRole.Alien;
   const submitted = typeof data.choice === "boolean";
 
-  const { hours, minutes } = useTimer({
+  const { days, hours, minutes } = useTimer({
     expiryTimestamp: fromUnixTime(data.endTime),
   });
 
@@ -350,7 +350,7 @@ function TaskCard(props: { data: TaskFragment; refresh: () => void }) {
 
         {data.status === TaskStatus.InProgress ? (
           <span className=" text-sm text-[#c0c0c0]">
-            {hours}hours {minutes}mins
+            {days}days {hours}hours {minutes}mins
           </span>
         ) : null}
       </CardFooter>

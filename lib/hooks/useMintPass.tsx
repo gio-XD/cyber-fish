@@ -38,6 +38,7 @@ function useMintPass() {
         minted = true;
 
         updateAccount(res.me);
+        // window.location.reload();
         break;
       }
     } while (!minted);

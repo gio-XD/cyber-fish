@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import ConnectButton from "./ConnectButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Flex from "./Flex";
 import Link3Logo from "./Link3Logo";
 
@@ -12,6 +12,7 @@ function Header() {
         <Link3Logo />
         <span className={cn("text-lg font-bold")}>Club</span>
       </Flex>
+      {/* <ConnectButton /> */}
       <ConnectButton />
     </Flex>
   );

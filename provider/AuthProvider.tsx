@@ -13,7 +13,7 @@ import {
 import "@rainbow-me/rainbowkit/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { RecoilRoot, useSetRecoilState } from "recoil";
+import { RecoilRoot, useRecoilState, useSetRecoilState } from "recoil";
 import { SWRConfig } from "swr";
 import { WagmiProvider, useAccount, useChainId } from "wagmi";
 import { Chain } from "wagmi/chains";
@@ -78,7 +78,7 @@ const RainbowAdapter = (props: PropsWithChildren) => {
   const updateAccount = useSetRecoilState(Account);
 
   const addr = useRef<string>(address || "");
-  const updateToken = useSetRecoilState(AccessToken);
+  const [token, updateToken] = useRecoilState(AccessToken);
 
   const [authStatus, setAuthStatus] =
     useState<AuthenticationStatus>("unauthenticated");
@@ -145,14 +145,21 @@ const RainbowAdapter = (props: PropsWithChildren) => {
       }
     },
 
-    signOut: async () => {},
+    signOut: async () => {
+      updateAccount(undefined);
+      updateToken(undefined);
+      window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+    },
   });
+
   return (
     <RainbowKitAuthenticationProvider
       adapter={authenticationAdapter}
-      status={authStatus}
+      status={!!token ? authStatus : "unauthenticated"}
     >
-      <RainbowKitProvider>{props.children}</RainbowKitProvider>
+      <RainbowKitProvider showRecentTransactions={false}>
+        {props.children}
+      </RainbowKitProvider>
     </RainbowKitAuthenticationProvider>
   );
 };

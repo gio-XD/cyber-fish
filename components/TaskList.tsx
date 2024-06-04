@@ -30,6 +30,8 @@ function TaskList(props: { status: TaskStatus }) {
 
       {props.status === TaskStatus.InProgress ? (
         <>
+          <TaskCard1 key="2" />
+          <TaskCard2 key="3" />
           <div key="1" className=" relative w-full h-full">
             <Image
               src="/bgs/orgTask.png"
@@ -38,9 +40,6 @@ function TaskList(props: { status: TaskStatus }) {
               className=" object-contain"
             />
           </div>
-
-          <TaskCard1 key="2" />
-          <TaskCard2 key="3" />
         </>
       ) : null}
     </CardGrid>

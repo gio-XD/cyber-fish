@@ -12,6 +12,7 @@ import {
   useState,
 } from "react";
 import { useRecoilState } from "recoil";
+import { useDisconnect } from "wagmi";
 
 type TGlobalCtx = {
   isLoggedIn: boolean;
@@ -33,10 +34,10 @@ function GlobalProvider(props: PropsWithChildren) {
   const [isLoggedIn, toggleIsLoggedIn] = useState(false);
 
   const [account, updateAccount] = useRecoilState(Account);
-
   const [accessToken, setToken] = useRecoilState(AccessToken);
 
   const { openConnectModal } = useConnectModal();
+  const { disconnect } = useDisconnect();
 
   useEffect(() => {
     toggleIsLoggedIn(!!accessToken);
@@ -54,6 +55,7 @@ function GlobalProvider(props: PropsWithChildren) {
         toggleIsLoggedIn,
         login: () => openConnectModal?.(),
         logout: () => {
+          disconnect();
           updateAccount(undefined);
           setToken(undefined);
           window.localStorage.removeItem(ACCESS_TOKEN_KEY);
