@@ -87,6 +87,10 @@ const RainbowAdapter = (props: PropsWithChildren) => {
     addr.current = address || "";
   }, [address]);
 
+  useEffect(() => {
+    setAuthStatus(!token ? "unauthenticated" : "authenticated");
+  }, [token]);
+
   const authenticationAdapter = createAuthenticationAdapter({
     getNonce: async () => {
       await new Promise((r) => setTimeout(r, 100));
@@ -155,7 +159,7 @@ const RainbowAdapter = (props: PropsWithChildren) => {
   return (
     <RainbowKitAuthenticationProvider
       adapter={authenticationAdapter}
-      status={!!token ? authStatus : "unauthenticated"}
+      status={authStatus}
     >
       <RainbowKitProvider showRecentTransactions={false}>
         {props.children}
